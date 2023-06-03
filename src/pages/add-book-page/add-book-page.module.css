@@ -1,0 +1,20 @@
+.form__container {
+    background-color: white;
+    width: 460px;
+    border-radius: 15px;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 32px 0 48px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px auto 0 auto;
+}
+
+.link:visited {
+    color: black;
+}
+.link {
+    color: black;
+    text-decoration: black;
+}
