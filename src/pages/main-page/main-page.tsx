@@ -1,23 +1,26 @@
-import { useContext, useEffect, useState, FC } from "react";
+import { useContext, useEffect, useState, FC, useCallback } from "react";
 import { Box, Typography, Divider } from "@mui/material";
-import Loader from "../../components/main-page-loader/loader";
-import BookView from "../../components/book-view/book-view";
+import { Loader } from "../../components/main-page-loader/loader";
+import { BookView } from "../../components/book-view/book-view";
 import { Context } from "../../components/app/app";
 import { FILTER_AUTHOR } from "../../utils/constants";
 import { getRecommendation, sortDataByFilter, sortByChars, sortByNumbers, sortDocs, generateSubtitle } from "../../utils/helpers";
 import { IContext, TData } from "../../utils/types";
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 
-const MainPage: FC = () => {
+export const MainPage: FC = () => {
     const { data, setData, isLoading, filter } = useContext(Context) as IContext;
     const [dataKeys, setDataKeys] = useState<string[] | null>(null);
     const [dataValues, setDataValues] = useState<{ data: DocumentData; id: string }[][] | null>(null);
     const [recommedation, setRecomendation] = useState<{ data: DocumentData; id: string } | null>(null);
     const [isSorting, setSorting] = useState(true);
 
-    const handleDeleteItem = (id: string) => {
-        setData((data as QueryDocumentSnapshot<DocumentData>[]).filter((doc) => doc.id !== id));
-    };
+    const handleDeleteItem = useCallback(
+        (id: string) => {
+            setData((data as QueryDocumentSnapshot<DocumentData>[]).filter((doc) => doc.id !== id));
+        },
+        [data, setData]
+    );
 
     useEffect(() => {
         setSorting(true);
@@ -84,5 +87,3 @@ const MainPage: FC = () => {
         </Box>
     );
 };
-
-export default MainPage;

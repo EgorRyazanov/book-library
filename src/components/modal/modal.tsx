@@ -1,4 +1,4 @@
-import React, { memo, useEffect, FC, ReactNode } from "react";
+import { memo, useEffect, FC, ReactNode } from "react";
 import ReactDOM from "react-dom";
 import styles from "./modal.module.css";
 import { Box, IconButton, Typography } from "@mui/material";
@@ -12,8 +12,7 @@ interface IModal {
     handleToggleModal: () => void;
 }
 
-const Modal: FC<IModal> = memo(({ children, handleToggleModal }) => {
-    console.log(modalContainer);
+export const Modal: FC<IModal> = memo(({ children, handleToggleModal }) => {
     const handleEscPressed = (event: KeyboardEvent) => (event.code === "Escape" ? handleToggleModal() : null);
     useEffect(() => {
         body.style.overflow = "hidden";
@@ -53,5 +52,3 @@ const Modal: FC<IModal> = memo(({ children, handleToggleModal }) => {
         modalContainer
     );
 });
-
-export default Modal;

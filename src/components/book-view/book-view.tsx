@@ -5,10 +5,10 @@ import database from "../../firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState, FC } from "react";
+import { useState, FC, useCallback, memo } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
-import Modal from "../modal/modal";
-import BookViewModal from "../book-view-modal/book-view-modal";
+import { Modal } from "../modal/modal";
+import { BookViewModal } from "../book-view-modal/book-view-modal";
 import { TData } from "../../utils/types";
 
 interface IBookView {
@@ -17,11 +17,11 @@ interface IBookView {
     handleDeleteItem: (id: string) => void;
 }
 
-const BookView: FC<IBookView> = ({ data, id, handleDeleteItem }) => {
+export const BookView: FC<IBookView> = memo(({ data, id, handleDeleteItem }) => {
     const [modalActive, setModalActive] = useState(false);
-    const handleToggleModal = () => {
+    const handleToggleModal = useCallback(() => {
         setModalActive(!modalActive);
-    };
+    }, [modalActive]);
 
     const navigate = useNavigate();
     const [isDeleting, setDeleting] = useState(false);
@@ -107,6 +107,4 @@ const BookView: FC<IBookView> = ({ data, id, handleDeleteItem }) => {
             )}
         </>
     );
-};
-
-export default BookView;
+});

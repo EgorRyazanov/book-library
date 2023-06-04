@@ -13,10 +13,10 @@ import { toast } from "react-toastify";
 import { Context } from "../../components/app/app";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import FormLoader from "../../components/form-loader/form.loader";
+import { FormLoader } from "../../components/form-loader/form.loader";
 import { IContext, TFormValues } from "../../utils/types.js";
 
-const AddBookPage: FC = () => {
+export const AddBookPage: FC = () => {
     const { handleSubmit, control, reset, setValue } = useForm<TFormValues>({ mode: "onSubmit" });
     const [isPosting, setPosting] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(0);
@@ -252,5 +252,3 @@ const AddBookPage: FC = () => {
         </div>
     );
 };
-
-export default AddBookPage;

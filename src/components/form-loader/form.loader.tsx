@@ -5,7 +5,7 @@ interface IFormLoader {
     styles: string;
 }
 
-const FormLoader: FC<IFormLoader> = ({ styles }) => {
+export const FormLoader: FC<IFormLoader> = ({ styles }) => {
     return (
         <div className={styles}>
             <Typography variant="h4" component="div">
@@ -21,5 +21,3 @@ const FormLoader: FC<IFormLoader> = ({ styles }) => {
         </div>
     );
 };
-
-export default FormLoader;

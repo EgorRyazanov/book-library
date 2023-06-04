@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../app/app";
 
-const SideBar = () => {
+export const SideBar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const { filter, setFilter } = useContext(Context);
     const navigate = useNavigate();
@@ -44,4 +44,3 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;

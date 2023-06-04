@@ -1,12 +1,12 @@
 import { Box, Typography, Divider, Rating } from "@mui/material";
 import { TData } from "../../utils/types";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 interface IBooKViewModal {
     data: TData;
 }
 
-const BookViewModal: FC<IBooKViewModal> = ({ data }) => {
+export const BookViewModal: FC<IBooKViewModal> = memo(({ data }) => {
     return (
         <Box sx={{ p: 2 }}>
             <Typography sx={{ justifyContent: "flex-start", wordWrap: "break-word" }} variant="body1" component="p">
@@ -37,5 +37,4 @@ const BookViewModal: FC<IBooKViewModal> = ({ data }) => {
             <Rating sx={{ mb: 4 }} name="read-only" value={data.rating} readOnly />
         </Box>
     );
-};
-export default BookViewModal;
+});
